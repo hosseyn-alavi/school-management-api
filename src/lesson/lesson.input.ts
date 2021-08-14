@@ -1,4 +1,4 @@
-import { Field, ID, InputType } from '@nestjs/graphql';
+import { Field, ID, InputType, PartialType } from '@nestjs/graphql';
 import { MinLength, IsDateString, IsUUID } from 'class-validator';
 
 @InputType()
@@ -18,4 +18,11 @@ export class CreateLessonInput {
   @IsUUID('4', { each: true })
   @Field(() => [ID], { defaultValue: [] })
   students: string[];
+}
+
+@InputType()
+export class UpdateLessonInput extends PartialType(CreateLessonInput) {
+  @IsUUID('4')
+  @Field()
+  id: string;
 }
