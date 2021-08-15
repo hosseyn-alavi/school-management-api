@@ -52,6 +52,11 @@ export class LessonResolver {
     return this.lessonService.assignStudentsToLesson(lessonId, studentIds);
   }
 
+  @Mutation((returns) => String)
+  deleteLesson(@Args('id') id: string) {
+    return this.lessonService.deleteLesson(id);
+  }
+
   @ResolveField()
   async students(@Parent() lesson: LessonType) {
     return this.studentService.getManyStudents(lesson.students || []);
