@@ -52,4 +52,9 @@ export class StudentService {
       ...restParams,
     });
   }
+
+  async deleteStudent(id: string): Promise<string> {
+    await this.studentRepository.delete({ id });
+    return 'Item successfully deleted';
+  }
 }
